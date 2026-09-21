@@ -20,4 +20,4 @@ Topik halaman saya: Pendapatan Harian Driver Shopee Saya.
 
 ## Catatan penggunaan AI
 
-Untuk menyalin Rencana halaman saya kedalam README.md
+Untuk menyalin Rencana halaman saya kedalam README.md, dan membantu memvalidasi pekerjaan saya.
