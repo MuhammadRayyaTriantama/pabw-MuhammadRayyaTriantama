@@ -23,19 +23,130 @@
   <!-- TODO C.1: buat <header> di sini.
        Isinya: satu <h1> berisi judul halaman Anda.
        Di dalamnya juga ada <nav> berisi 3 tautan ke bagian halaman. -->
+     <header>
+          <h1>Pendapatan Harian Driver Shopee Saya</h1>
+
+          <nav>
+               <a href="#beranda">Beranda</a>
+               <a href="#tambah-pendapatan">Tambah Pendapatan</a>
+               <a href="#rekap-mingguan">Rekap Mingguan</a>
+          </nav>
+     </header>
 
   <!-- TODO C.2: buat <main> di sini sebagai pembungkus semua bagian isi.
        Di dalamnya ada 2 <section>, masing-masing punya <h2> sendiri. -->
+     <main>
 
     <!-- TODO D.1: di dalam section pertama, buat tabel data Anda.
          Wajib ada: <caption>, <thead>, <th scope="col">, dan minimal 3 baris data. -->
+          <section id="beranda">
+            <h2>Riwayat Pendapatan</h2>
+
+            <table border="1">
+                <caption>Riwayat Pendapatan Harian Driver Shopee</caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Jumlah Orderan</th>
+                        <th scope="col">Total Pendapatan</th>
+                        <th scope="col">Jam Kerja</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1 September 2026</td>
+                        <td>25</td>
+                        <td>Rp149.200</td>
+                        <td>9 Jam</td>
+                    </tr>
+
+                    <tr>
+                        <td>9 September 2026</td>
+                        <td>10</td>
+                        <td>Rp94.200</td>
+                        <td>4 Jam</td>
+                    </tr>
+
+                    <tr>
+                        <td>20 September 2026</td>
+                        <td>3</td>
+                        <td>Rp19.200</td>
+                        <td>1 Jam</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
     <!-- TODO E.1: di dalam section kedua, buat form Anda.
          Wajib ada: minimal 3 kolom, setiap kolom punya <label for> yang
          cocok dengan id input-nya, dan satu atribut validasi. -->
+         <section id="tambah-pendapatan">
+            <h2>Input Pendapatan Harian</h2>
 
+            <form>
+
+                <div>
+                    <label for="tanggal">Tanggal:</label>
+                    <input
+                        type="date"
+                        id="tanggal"
+                        name="tanggal"
+                        required
+                    >
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="jumlah-orderan">Jumlah Orderan:</label>
+                    <input
+                        type="number"
+                        id="jumlah-orderan"
+                        name="jumlah-orderan"
+                        min="1"
+                        required
+                    >
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="total-pendapatan">Total Pendapatan:</label>
+                    <input
+                        type="number"
+                        id="total-pendapatan"
+                        name="total-pendapatan"
+                        min="0"
+                        required
+                    >
+                </div>
+
+                <br>
+
+                <button type="submit">Simpan Pendapatan</button>
+
+            </form>
+          </section>
+  
+  <!-- TODO F.1 -->
+         <section id="rekap-mingguan">
+            <h2>Rekap Mingguan</h2>
+
+            <p>
+                Halaman ini digunakan untuk melihat rangkuman pendapatan
+                driver Shopee dalam satu minggu.
+            </p>
+        </section>
+
+    </main>
+          
   <!-- TODO C.3: buat <footer> di sini.
        Isinya: nama Anda, NIM Anda, dan tahun. -->
-
+     <footer>
+       <p>Muhammad Rayya Triantama · 25523278 · 2026</p>
+     </footer>
+  
 </body>
 </html>
