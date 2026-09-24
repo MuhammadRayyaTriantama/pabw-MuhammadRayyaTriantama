@@ -33,8 +33,12 @@ Untuk menyalin Rencana halaman saya kedalam README.md, dan membantu memvalidasi 
 | Token | Nilai | Untuk apa |
 |---|---|---|
 | --color-primary | #EE4D2D | tombol, tautan, penanda |
-| --color-fg | #0F172A | warna teks utama |
-| --color-bg | #F8FAFC | latar halaman |
+| --color-fg | #1F2937 | warna teks utama |
+| --color-bg | #FFF7F5 | latar halaman |
+| --color-surface | #FFFFFF | latar kartu dan panel |
+| --color-border | #E5E7EB | garis dan tepi elemen |
+| --color-danger | #B00020 | peringatan dan isian tidak sah |
+| --color-focus | #7C3AED | garis fokus keyboard |
 | --radius-md | 0.5rem | sudut tombol dan kartu |
 | --space-4 | 1rem | jarak standar antar elemen |
  
