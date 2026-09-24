@@ -30,13 +30,18 @@
        Isinya: satu <h1> berisi judul halaman Anda.
        Di dalamnya juga ada <nav> berisi 3 tautan ke bagian halaman. -->
      <header>
+        <input type="checkbox" id="tema" class="pengalih-tema">
+        <label for="tema" class="tombol-tema">Tema gelap</label>
+        
+        <div class="header-baris">
           <h1>Pendapatan Harian Driver Shopee Saya</h1>
 
           <nav>
                <a href="#beranda">Beranda</a>
                <a href="#tambah-pendapatan">Tambah Pendapatan</a>
                <a href="#rekap-mingguan">Rekap Mingguan</a>
-          </nav>
+          </nav>    
+        </div>
      </header>
 
   <!-- TODO C.2: buat <main> di sini sebagai pembungkus semua bagian isi.
@@ -103,7 +108,7 @@
          <section id="tambah-pendapatan">
             <h2>Input Pendapatan Harian</h2>
 
-            <form>
+            <form class="form-kolom">
 
                 <div>
                     <label for="tanggal">Tanggal:</label>
@@ -114,8 +119,6 @@
                         required
                     >
                 </div>
-
-                <br>
 
                 <div>
                     <label for="jumlah-orderan">Jumlah Orderan:</label>
@@ -128,8 +131,6 @@
                     >
                 </div>
 
-                <br>
-
                 <div>
                     <label for="total-pendapatan">Total Pendapatan:</label>
                     <input
@@ -140,8 +141,6 @@
                         required
                     >
                 </div>
-
-                <br>
 
                 <button type="submit">Simpan Pendapatan</button>
 
