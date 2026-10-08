@@ -44,3 +44,10 @@ Untuk menyalin Rencana halaman saya kedalam README.md, dan membantu memvalidasi 
  
 Kriteria selesai saya: mengubah --color-primary di satu baris
 harus mengubah warna tombol, tautan, judul, dan garis fokus.
+
+## Pertemuan 8 - Membuat Halaman Profil yang Datanya Bergerak
+
+Penggunaan AI
+- Pada bagian screenshot, menjelaskan untuk screenshot kedua
+- Pada perbaikan console saya tidak tau favicon.ico
+
