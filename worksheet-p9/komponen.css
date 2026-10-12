@@ -71,3 +71,53 @@ input:user-invalid {
   justify-content: space-between;
   gap: var(--space-2);
 }
+
+#filter button.aktif {
+  font-weight: bold;
+  border: 2px solid currentColor;
+}
+
+.daftar-proyek {
+    display: grid;
+    gap: 12px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.daftar-proyek .kartu {
+    padding: 16px;
+    border-radius: 10px;
+}
+
+#filter button.aktif {
+    font-weight: bold;
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+#kosong {
+    padding: 12px;
+    border-radius: 8px;
+    background: #f1f1f1;
+    color: #333;
+}
+
+.pesan-galat {
+    display: block;
+    margin-top: 4px;
+    color: #b42318;
+    font-size: 0.9rem;
+}
+
+input[aria-invalid="true"] {
+    border: 2px solid #b42318;
+}
+
+#pesan-form {
+    margin-top: 12px;
+}
+
+#tombol-simpan:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}

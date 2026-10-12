@@ -6,7 +6,7 @@ const profil = {
 
 const jumlahProyek = 3;
 
-const daftarProyek = [
+export const daftarProyek = [
   {
     judul: "Halaman Profil",
     tahun: 2026,
