@@ -51,3 +51,7 @@ Penggunaan AI
 - Pada bagian screenshot, menjelaskan untuk screenshot kedua
 - Pada perbaikan console saya tidak tau favicon.ico
 
+## Pertemuan 9
+
+Penggunaan AI
+-Pada bagian D saya menggunakan AI karena sulit memahaminya
