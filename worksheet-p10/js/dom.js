@@ -1,6 +1,6 @@
 /*import { daftarProyek } from "./app.js";*/
 
-import { ambilProyek } from "./api";
+import { ambilProyek } from "./api.js";
 
 const wadah = document.querySelector("#daftar");
 const kosong = document.querySelector("#kosong");
@@ -58,7 +58,7 @@ if (elemenWajib.some((elemen) => elemen === null)) {
         });
     }
 
-    render(daftarProyek);
+    /*render(daftarProyek);*/
 
     function tandaiTombolAktif(tombolAktif) {
         barisFilter.querySelectorAll("button").forEach((tombol) => {
@@ -86,7 +86,7 @@ if (elemenWajib.some((elemen) => elemen === null)) {
 
         const kategori = tombol.dataset.kategori;
 
-        const terpilih = daftarProyek.filter((proyek) => {
+        /*const terpilih = daftarProyek.filter((proyek) => {
             if (kategori === "semua") {
                 return true;
             }
@@ -100,7 +100,7 @@ if (elemenWajib.some((elemen) => elemen === null)) {
             }
 
             return false;
-        });
+        });*/
 
         tandaiTombolAktif(tombol);
         render(terpilih);

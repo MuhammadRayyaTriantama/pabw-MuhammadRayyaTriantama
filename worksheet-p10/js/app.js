@@ -37,25 +37,25 @@ function buatPerkenalan({ nama, peran }) {
 
 const formatKeahlian = (daftar) => daftar.join(" · ");
 
-const judulProyek = daftarProyek.map((proyek) => proyek.judul);
+/*const judulProyek = daftarProyek.map((proyek) => proyek.judul);*/
 
-const proyekSelesai = daftarProyek.filter(
+/*const proyekSelesai = daftarProyek.filter(
   (proyek) => proyek.selesai
-);
+);*/
 
-const proyekPendapatan = daftarProyek.find(
+/*const proyekPendapatan = daftarProyek.find(
   (proyek) => proyek.judul === "Website Pendapatan Driver"
-);
+);*/
 
 const salinanProfil = { ...profil };
 
 console.log(kalimat);
 console.log(profil);
 console.log(jumlahProyek);
-console.table(daftarProyek);
+/*console.table(daftarProyek);*/
 console.log(buatPerkenalan(profil));
 console.log(formatKeahlian(profil.keahlian));
-console.table(judulProyek);
-console.table(proyekSelesai);
-console.log(proyekPendapatan);
+/*console.table(judulProyek);*/
+/*console.table(proyekSelesai);*/
+/*console.log(proyekPendapatan);*/
 console.log(salinanProfil);
