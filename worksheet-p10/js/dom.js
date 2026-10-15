@@ -1,9 +1,10 @@
 /*import { daftarProyek } from "./app.js";*/
 
-import { ambilProyek } from "./api.js";
+/*import { ambilProyek } from "./api.js";*/
 
 const wadah = document.querySelector("#daftar");
 const kosong = document.querySelector("#kosong");
+const muatEl = document.querySelector("#muat");
 const barisFilter = document.querySelector("#filter");
 
 const form = document.querySelector("#tambah-pendapatan");
@@ -14,10 +15,10 @@ const inputPendapatan = document.querySelector("#total-pendapatan");
 const tombolSimpan = document.querySelector("#tombol-simpan");
 const pesanForm = document.querySelector("#pesan-form");
 
-
 const elemenWajib = [
     wadah,
     kosong,
+    muatEl,
     barisFilter,
     form,
     inputTanggal,
@@ -31,44 +32,54 @@ if (elemenWajib.some((elemen) => elemen === null)) {
     console.error(
         "Ada elemen HTML yang tidak ditemukan. Periksa id di profil.html."
     );
-} else {
+}
 
+function buatKartu(proyek) {
+    const li = document.createElement("li");
+    li.className = "kartu";
+    li.textContent = proyek.judul;
+    return li;
+}
 
-    function buatKartu(proyek) {
-        const li = document.createElement("li");
+export function render(data) {
+    wadah.textContent = "";
 
-        li.className = "kartu";
-        li.textContent = proyek.judul;
-
-        return li;
+    if (data.length === 0) {
+        kosong.textContent =
+            "Tidak ada proyek yang sesuai dengan filter ini.";
+        kosong.hidden = false;
+        return;
     }
 
-    function render(data) {
-        wadah.textContent = "";
+    kosong.hidden = true;
 
-        if (data.length === 0) {
-            kosong.hidden = false;
-            return;
-        }
+    data.forEach((proyek) => {
+        wadah.append(buatKartu(proyek));
+    });
+}
 
-        kosong.hidden = true;
+export function aturMemuat(aktif) {
+    muatEl.hidden = !aktif;
+}
 
-        data.forEach((proyek) => {
-            wadah.append(buatKartu(proyek));
-        });
-    }
+export function tampilkanGalat(pesan) {
+    wadah.textContent = "";
+    kosong.textContent = pesan;
+    kosong.hidden = false;
+}
 
-    /*render(daftarProyek);*/
+/*render(daftarProyek);*/
 
-    function tandaiTombolAktif(tombolAktif) {
-        barisFilter.querySelectorAll("button").forEach((tombol) => {
-            const aktif = tombol === tombolAktif;
+function tandaiTombolAktif(tombolAktif) {
+    barisFilter.querySelectorAll("button").forEach((tombol) => {
+        const aktif = tombol === tombolAktif;
 
-            tombol.classList.toggle("aktif", aktif);
-            tombol.setAttribute("aria-pressed", String(aktif));
-        });
-    }
+        tombol.classList.toggle("aktif", aktif);
+        tombol.setAttribute("aria-pressed", String(aktif));
+    });
+}
 
+export function pasangFilter(daftar) {
     const tombolSemua = barisFilter.querySelector(
         '[data-kategori="semua"]'
     );
@@ -102,100 +113,115 @@ if (elemenWajib.some((elemen) => elemen === null)) {
             return false;
         });*/
 
+        const terpilih = daftar.filter((proyek) => {
+            if (kategori === "semua") {
+                return true;
+            }
+
+            if (kategori === "selesai") {
+                return proyek.selesai === true;
+            }
+
+            if (kategori === "proses") {
+                return proyek.selesai === false;
+            }
+
+            return false;
+        });
+
         tandaiTombolAktif(tombol);
         render(terpilih);
     });
+}
 
-    const aturanKolom = [
-        {
-            input: inputTanggal,
-            pesanSalah: "Tanggal wajib dipilih.",
-            valid: (nilai) => nilai.trim() !== "",
-        },
-        {
-            input: inputOrderan,
-            pesanSalah:
-                "Jumlah orderan harus berupa bilangan bulat minimal 1.",
-            valid: (nilai) =>
-                nilai.trim() !== "" &&
-                Number.isInteger(Number(nilai)) &&
-                Number(nilai) >= 1,
-        },
-        {
-            input: inputPendapatan,
-            pesanSalah:
-                "Total pendapatan harus berupa angka 0 atau lebih.",
-            valid: (nilai) =>
-                nilai.trim() !== "" &&
-                Number.isFinite(Number(nilai)) &&
-                Number(nilai) >= 0,
-        },
-    ];
+const aturanKolom = [
+    {
+        input: inputTanggal,
+        pesanSalah: "Tanggal wajib dipilih.",
+        valid: (nilai) => nilai.trim() !== "",
+    },
+    {
+        input: inputOrderan,
+        pesanSalah:
+            "Jumlah orderan harus berupa bilangan bulat minimal 1.",
+        valid: (nilai) =>
+            nilai.trim() !== "" &&
+            Number.isInteger(Number(nilai)) &&
+            Number(nilai) >= 1,
+    },
+    {
+        input: inputPendapatan,
+        pesanSalah:
+            "Total pendapatan harus berupa angka 0 atau lebih.",
+        valid: (nilai) =>
+            nilai.trim() !== "" &&
+            Number.isFinite(Number(nilai)) &&
+            Number(nilai) >= 0,
+    },
+];
 
-    function periksaKolom(aturan) {
-        const nilai = aturan.input.value;
-        const sah = aturan.valid(nilai);
+function periksaKolom(aturan) {
+    const nilai = aturan.input.value;
+    const sah = aturan.valid(nilai);
 
-        const pesan = document.querySelector(
-            `#galat-${aturan.input.id}`
-        );
+    const pesan = document.querySelector(
+        `#galat-${aturan.input.id}`
+    );
 
-        aturan.input.setAttribute("aria-invalid", String(!sah));
+    aturan.input.setAttribute("aria-invalid", String(!sah));
 
+    if (pesan) {
         pesan.textContent = sah ? "" : aturan.pesanSalah;
-
-        return sah;
     }
 
-    function periksaSemuaKolom() {
-        const hasil = aturanKolom.map(periksaKolom);
+    return sah;
+}
 
-        const semuaSah = hasil.every(Boolean);
+function periksaSemuaKolom() {
+    const hasil = aturanKolom.map(periksaKolom);
+    const semuaSah = hasil.every(Boolean);
 
-        tombolSimpan.disabled = !semuaSah;
+    tombolSimpan.disabled = !semuaSah;
+    return semuaSah;
+}
 
-        return semuaSah;
-    }
-
-    aturanKolom.forEach(({ input }) => {
-        input.addEventListener("input", () => {
-            pesanForm.textContent = "";
-            periksaSemuaKolom();
-        });
-
-        input.addEventListener("change", () => {
-            pesanForm.textContent = "";
-            periksaSemuaKolom();
-        });
+aturanKolom.forEach(({ input }) => {
+    input.addEventListener("input", () => {
+        pesanForm.textContent = "";
+        periksaSemuaKolom();
     });
 
-    periksaSemuaKolom();
+    input.addEventListener("change", () => {
+        pesanForm.textContent = "";
+        periksaSemuaKolom();
+    });
+});
 
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
+periksaSemuaKolom();
 
-        const semuaSah = periksaSemuaKolom();
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-        if (!semuaSah) {
-            const kolomSalah = aturanKolom.find(
-                (aturan) => !aturan.valid(aturan.input.value)
-            );
+    const semuaSah = periksaSemuaKolom();
 
-            if (kolomSalah) {
-                kolomSalah.input.focus();
-            }
+    if (!semuaSah) {
+        const kolomSalah = aturanKolom.find(
+            (aturan) => !aturan.valid(aturan.input.value)
+        );
 
-            pesanForm.textContent =
-                "Periksa kolom yang ditandai sebelum menyimpan.";
-
-            return;
+        if (kolomSalah) {
+            kolomSalah.input.focus();
         }
 
         pesanForm.textContent =
-            "Validasi berhasil. Data pendapatan siap diproses.";
+            "Periksa kolom yang ditandai sebelum menyimpan.";
 
-        form.reset();
+        return;
+    }
 
-        periksaSemuaKolom();
-    });
-}
+    pesanForm.textContent =
+        "Validasi berhasil. Data pendapatan siap diproses.";
+
+    form.reset();
+    periksaSemuaKolom();
+});
