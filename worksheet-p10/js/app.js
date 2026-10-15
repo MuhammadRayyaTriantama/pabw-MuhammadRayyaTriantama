@@ -1,7 +1,23 @@
-import { ambilProyek } from "./api.js";
-ambilProyek()
-  .then((daftar) => console.log(daftar))
-  .catch((error) => console.error(error));
+import { ambilProyek } from './api.js';
+
+async function ujiProyek() {
+  try {
+    const daftar = await ambilProyek();
+    console.log(daftar);
+  } catch (galat) {
+    console.error('Gagal memuat proyek:', galat.message);
+
+    const pesan = document.querySelector('#kosong');
+    if (pesan) {
+      pesan.textContent =
+        'Data gagal dimuat. Periksa koneksi, lalu muat ulang halaman.';
+      pesan.hidden = false;
+    }
+  }
+}
+
+ujiProyek();
+
 
 const profil = {
   nama: "Muhammad Rayya Triantama",
