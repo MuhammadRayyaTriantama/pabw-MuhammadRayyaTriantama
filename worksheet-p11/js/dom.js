@@ -2,7 +2,7 @@
 
 /*import { ambilProyek } from "./api.js";*/
 
-import { saring } from "./data.js";
+/*import { saring } from "./data.js";*/
 
 const wadah = document.querySelector("#daftar");
 const kosong = document.querySelector("#kosong");

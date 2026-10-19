@@ -1,7 +1,4 @@
-import {
-    pilihKategori,
-    tambahFavorit
-} from "./state.js";
+import { pilihKategori, tambahFavorit, aturUlang } from "./state.js";
 
 export function pasangPendengar() {
     const barisFilter = document.querySelector("#filter");
@@ -27,5 +24,10 @@ export function pasangPendengar() {
         }
 
         tambahFavorit(Number(tombol.dataset.id));
+    });
+    const tombolAturUlang = document.querySelector("#atur-ulang");
+
+    tombolAturUlang.addEventListener("click", () => {
+        aturUlang();
     });
 }
