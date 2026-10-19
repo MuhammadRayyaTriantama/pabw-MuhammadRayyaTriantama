@@ -2,6 +2,8 @@
 
 /*import { ambilProyek } from "./api.js";*/
 
+import { saring } from "./data.js";
+
 const wadah = document.querySelector("#daftar");
 const kosong = document.querySelector("#kosong");
 const muatEl = document.querySelector("#muat");
@@ -34,28 +36,43 @@ if (elemenWajib.some((elemen) => elemen === null)) {
     );
 }
 
-function buatKartu(proyek) {
+function buatKartu(proyek, favorit) {
     const li = document.createElement("li");
     li.className = "kartu";
     li.textContent = proyek.judul;
+
+    const tombol = document.createElement("button");
+    tombol.className = "favorit";
+    tombol.dataset.id = proyek.id;
+    tombol.textContent =
+        favorit.includes(proyek.id) ? "★" : "☆";
+
+    li.append(tombol);
+
     return li;
 }
 
-export function render(data) {
+export function render(state) {
     wadah.textContent = "";
 
-    if (data.length === 0) {
-        kosong.textContent =
-            "Tidak ada proyek yang sesuai dengan filter ini.";
+    const tampil = saring(
+        state.daftarProyek,
+        state.kategoriAktif
+    );
+
+    if (tampil.length === 0) {
         kosong.hidden = false;
+        tandaiKategoriAktif(state.kategoriAktif);
         return;
     }
 
     kosong.hidden = true;
 
-    data.forEach((proyek) => {
-        wadah.append(buatKartu(proyek));
+    tampil.forEach((proyek) => {
+        wadah.append(buatKartu(proyek, state.favorit));
     });
+
+    tandaiKategoriAktif(state.kategoriAktif);
 }
 
 export function aturMemuat(aktif) {
@@ -70,67 +87,13 @@ export function tampilkanGalat(pesan) {
 
 /*render(daftarProyek);*/
 
-function tandaiTombolAktif(tombolAktif) {
+function tandaiKategoriAktif(kategoriAktif) {
     barisFilter.querySelectorAll("button").forEach((tombol) => {
-        const aktif = tombol === tombolAktif;
+        const aktif =
+            tombol.dataset.kategori === kategoriAktif;
 
         tombol.classList.toggle("aktif", aktif);
         tombol.setAttribute("aria-pressed", String(aktif));
-    });
-}
-
-export function pasangFilter(daftar) {
-    const tombolSemua = barisFilter.querySelector(
-        '[data-kategori="semua"]'
-    );
-
-    if (tombolSemua) {
-        tandaiTombolAktif(tombolSemua);
-    }
-
-    barisFilter.addEventListener("click", (event) => {
-        const tombol = event.target.closest("button");
-
-        if (!tombol || !barisFilter.contains(tombol)) {
-            return;
-        }
-
-        const kategori = tombol.dataset.kategori;
-
-        /*const terpilih = daftarProyek.filter((proyek) => {
-            if (kategori === "semua") {
-                return true;
-            }
-
-            if (kategori === "selesai") {
-                return proyek.selesai === true;
-            }
-
-            if (kategori === "proses") {
-                return proyek.selesai === false;
-            }
-
-            return false;
-        });*/
-
-        const terpilih = daftar.filter((proyek) => {
-            if (kategori === "semua") {
-                return true;
-            }
-
-            if (kategori === "selesai") {
-                return proyek.selesai === true;
-            }
-
-            if (kategori === "proses") {
-                return proyek.selesai === false;
-            }
-
-            return false;
-        });
-
-        tandaiTombolAktif(tombol);
-        render(terpilih);
     });
 }
 
