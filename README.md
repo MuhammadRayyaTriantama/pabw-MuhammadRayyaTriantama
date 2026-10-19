@@ -67,4 +67,4 @@ Penggunaan AI
 
 Penggunaan AI
 - Membantu menjelaskan apa yang dimaksud B.1
-- 
+- Membantu membetulkan code yang salah, seperti adanya typo 
