@@ -1,31 +1,10 @@
 import { ambilProyek } from "./api.js";
-import { render, pasangFilter, aturMemuat, tampilkanGalat, } from "./dom.js";
-async function ujiProyek() {
-  try {
-    const daftar = await ambilProyek();
-    console.log(daftar);
-  } catch (galat) {
-    console.error('Gagal memuat proyek:', galat.message);
-
-    const pesan = document.querySelector('#kosong');
-    if (pesan) {
-      pesan.textContent =
-        'Data gagal dimuat. Periksa koneksi, lalu muat ulang halaman.';
-      pesan.hidden = false;
-    }
-  }
-}
+import { isiProyek } from "./state.js";
+import { tampilkanGalat, aturMemuat } from "./dom.js";
+import { pasangPendengar } from "./events.js";
 
 /*ujiProyek();*/
 
-
-const profil = {
-  nama: "Muhammad Rayya Triantama",
-  peran: "Mahasiswa Informatika",
-  keahlian: ["HTML", "CSS", "JavaScript"],
-};
-
-const jumlahProyek = 3;
 
 /*export const daftarProyek = [
   {
@@ -45,14 +24,6 @@ const jumlahProyek = 3;
   },
 ]; */
 
-const kalimat = `Nama saya ${profil.nama}, dan saya belajar ${profil.keahlian.length} hal.`;
-
-function buatPerkenalan({ nama, peran }) {
-  return `${nama} — ${peran}`;
-}
-
-const formatKeahlian = (daftar) => daftar.join(" · ");
-
 /*const judulProyek = daftarProyek.map((proyek) => proyek.judul);*/
 
 /*const proyekSelesai = daftarProyek.filter(
@@ -63,34 +34,24 @@ const formatKeahlian = (daftar) => daftar.join(" · ");
   (proyek) => proyek.judul === "Website Pendapatan Driver"
 );*/
 
-const salinanProfil = { ...profil };
-
-async function muat() {
-    aturMemuat(true);
-
-    try {
-        const daftar = await ambilProyek();
-        pasangFilter(daftar);
-        render(daftar);
-    } catch (galat) {
-        tampilkanGalat(
-            "Data gagal dimuat. Periksa koneksi, lalu muat ulang halaman."
-        );
-        console.error(galat.message);
-    } finally {
-        aturMemuat(false);
-    }
-}
-
-muat();
-
-console.log(kalimat);
-console.log(profil);
-console.log(jumlahProyek);
 /*console.table(daftarProyek);*/
-console.log(buatPerkenalan(profil));
-console.log(formatKeahlian(profil.keahlian));
 /*console.table(judulProyek);*/
 /*console.table(proyekSelesai);*/
 /*console.log(proyekPendapatan);*/
-console.log(salinanProfil);
+
+async function mulai() {
+  pasangPendengar();
+  aturMemuat(true);
+
+  try {
+    isiProyek(await ambilProyek());
+  } catch (galat) {
+    tampilkanGalat(
+      "Data gagal dimuat. Periksa koneksi, lalu muat ulang."
+    );
+  } finally {
+    aturMemuat(false);
+  }
+}
+
+mulai();
