@@ -56,14 +56,20 @@ Penggunaan AI
 Penggunaan AI
 -Pada bagian D saya menggunakan AI karena sulit memahaminya
 
-## Pertemuan 9
+## Pertemuan 10
 
 Penggunaan AI
 - Memeriksa hasil code saya, dan memberi tau letak salah codenya
 - Menjelaskan beberapa kode yg belum saya pahami
 
-## Pertemuan 10
+## Pertemuan 11
 
 Penggunaan AI
 - Membantu menjelaskan apa yang dimaksud B.1
 - Membantu membetulkan code yang salah, seperti adanya typo 
+
+## Pertemuan 12
+
+Penggunaan AI
+- Membantu menjalankan npm run dev karena sebelumnya error
+- Membantu menghilangkan galat pada bagian C
