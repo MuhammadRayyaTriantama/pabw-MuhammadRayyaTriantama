@@ -73,3 +73,5 @@ Penggunaan AI
 Penggunaan AI
 - Membantu menjalankan npm run dev karena sebelumnya error
 - Membantu menghilangkan galat pada bagian C
+- Membantu menjelaskan pada bagian E
+
