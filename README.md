@@ -62,7 +62,6 @@ Penggunaan AI
 - Memeriksa hasil code saya, dan memberi tau letak salah codenya
 - Menjelaskan beberapa kode yg belum saya pahami
 
-
 ## Pertemuan 10
 
 Penggunaan AI
