@@ -1,7 +1,8 @@
 export const profil = {
   nama: "Muhammad Rayya Triantama",
   peran: "Mahasiswa Informatika",
-  keahlian: ["HTML", "CSS", "JavaScript"],
+  namaHalaman: "Pendapatan Harian Driver Shopee Saya",
+  keahlian: ["HTML", "CSS", "JavaScript"]
 };
 
 export function buatPerkenalan({ nama, peran }) {
